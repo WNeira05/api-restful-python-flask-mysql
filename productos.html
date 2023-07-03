@@ -36,7 +36,7 @@
         .table td {
             padding: 8px;
             text-align: left;
-            border-bottom: 1px solid #ddd;
+            border-bottom: none; /* Eliminar el borde inferior */
         }
 
         .table th {
@@ -82,6 +82,10 @@
                 transform: rotate(360deg);
             }
         }
+
+        .table td.align-middle {
+            vertical-align: middle;
+        }
     </style>
 </head>
 
@@ -91,10 +95,10 @@
     </header>
     <main>
         <div id="app" class="container">
-            <h1>Productos</h1>
+            <h1>Listado de Productos</h1>
             <br>
             <a class="btn btn-primary btn-animate animate__animated animate__heartBeat"
-                href="producto-create.html">Nuevo</a>
+                href="producto-create.html">Nuevo Producto</a>
             <br><br>
             <div v-if="error" class="error-message">
                 <p>Lo sentimos, ha ocurrido un error.</p>
@@ -119,14 +123,14 @@
                             </thead>
                             <tbody>
                                 <tr v-for="producto in productos" :key="producto.id">
-                                    <td scope="row">{{ producto.id }}</td>
-                                    <td>{{ producto.nombre }}</td>
-                                    <td>{{ producto.precio }}</td>
-                                    <td>{{ producto.stock }}</td>
-                                    <td>
+                                    <td scope="row" class="text-center align-middle">{{ producto.id }}</td>
+                                    <td class="text-center align-middle">{{ producto.nombre }}</td>
+                                    <td class="text-center align-middle">{{ producto.precio }}</td>
+                                    <td class="text-center align-middle">{{ producto.stock }}</td>
+                                    <td class="align-middle">
                                         <img :src="producto.imagen" :alt="producto.nombre">
                                     </td>
-                                    <td class="actions-btns">
+                                    <td class="actions-btns align-middle">
                                         <a class="btn btn-primary"
                                             :href="'producto-update.html?id=' + producto.id">Editar</a>
                                         <button type="button" class="btn btn-danger"
